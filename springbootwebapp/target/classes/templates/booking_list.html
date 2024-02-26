@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Framework</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div th:if="${not #lists.isEmpty(bookingList)}">
+        <h2>Cargo Booking List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Mode</th>
+                <th scope="col">Cargo</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">Created Time</th>
+            </tr>
+            <tr th:each="booking : ${bookingList}">
+                <td scope="row" th:text="${booking.id}">Id</td>
+                <td th:text="${booking.mode}">Mode</td>
+                <td th:text="${booking.cargo}">Cargo</td>
+                <td th:text="${booking.loading}">From</td>
+                <td th:text="${booking.discharge}">To</td>
+                <td th:text="${booking.createdTime}">Created Time</td>
+                <td><a href="#" th:href="@{/cargo/get_booking(id=${booking.id},mode=${booking.mode})}"><button type="button" class="btn btn-secondary">Show Detail</button></a></td>
+                <td><a href="#" th:href="@{/cargo/delete_booking(id=${booking.id},mode=${booking.mode})}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
